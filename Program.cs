@@ -1,30 +1,29 @@
-﻿using System;
-
-namespace MyApp
+﻿class Program
 {
-    internal class Program
+    static void Main()
     {
-        static int BuscaLinear(int[] array, int elemento)
+        int[] numeros = { 4, 7, 12, 34, 12, 56, 43, 12, 7, 88, 23 };
+        
+        Console.WriteLine("Qual número você deseja encontrar no array?");
+        int valorProcurado = Convert.ToInt32(Console.ReadLine());
+
+        int ocorrencias = ContarOcorrencias(numeros, valorProcurado);
+
+        Console.WriteLine($"O valor {valorProcurado} aparece {ocorrencias} vez(es) no array.");
+    }
+
+    static int ContarOcorrencias(int[] array, int valor)
+    {
+        int contador = 0;
+
+        for (int i = 0; i < array.Length; i++)
         {
-            for (int i = 0; i < array.Length; i++)
+            if (array[i] == valor)
             {
-                if (array[i] == elemento)
-                {
-                    return i;
-                }
+                contador++;
             }
-            return -1;
         }
 
-        static void Main(string[] args)
-        {
-            int[] numeros = { 20, 33, 54, 60, 89, 93, 100 };
-            
-            Console.WriteLine("Qual número você deseja encontrar no array?");
-            int chave = Convert.ToInt32(Console.ReadLine());
-           
-            int resultado = BuscaLinear(numeros, chave);
-            Console.WriteLine(resultado != -1 ? $"Elemento {chave} encontrado na posição {resultado}." : $"Elemento {chave} não encontrado no array.");
-        }
+        return contador;
     }
 }
